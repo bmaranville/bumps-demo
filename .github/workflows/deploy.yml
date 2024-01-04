@@ -26,7 +26,7 @@ jobs:
           git clone --branch webview --single-branch https://github.com/bumps/bumps
           python -m pip install wheel
           cd bumps && python setup.py bdist_wheel
-          cp bumps/dist/*.whl content
+          cp dist/*.whl content
       - name: Build the JupyterLite site
         run: |
           cp README.md content

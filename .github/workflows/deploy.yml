@@ -21,13 +21,13 @@ jobs:
       - name: Install the dependencies
         run: |
           python -m pip install -r requirements.txt
+          mkdir -p content
       - name: Build bumps wheel
         run: |
           git clone --branch webview --single-branch https://github.com/bumps/bumps
           python -m pip install wheel
           cd bumps && python setup.py bdist_wheel
-          mkdir -p content
-          cp dist/*.whl content
+          cp dist/*.whl ../content
       - name: Build the JupyterLite site
         run: |
           cp README.md content

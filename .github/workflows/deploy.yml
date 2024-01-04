@@ -22,16 +22,16 @@ jobs:
         run: |
           python -m pip install -r requirements.txt
           mkdir -p content
+      - name: Build the JupyterLite site
+        run: |
+          cp README.md content
+          jupyter lite build --contents content --output-dir dist
       - name: Build bumps wheel
         run: |
           git clone --branch webview --single-branch https://github.com/bumps/bumps
           python -m pip install wheel
           cd bumps && python setup.py bdist_wheel
-          cp dist/*.whl ../content
-      - name: Build the JupyterLite site
-        run: |
-          cp README.md content
-          jupyter lite build --contents content --output-dir dist
+          cp dist/*.whl ../dist
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
